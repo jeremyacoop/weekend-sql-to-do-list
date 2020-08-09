@@ -6,9 +6,10 @@ function handleReady() {
 	console.log('jQuery is ready');
 	getToDos();
 	// set up click listeners
+	// $('#task-priority').change(prioritySelector);
 	$('#submit-button').on('click', createToDo);
-	$('#delete-button').on('click', deleteToDo);
-	// $('#submit-button').on('click', createToDo);
+	$('#display-items').on('click', '.delete-button', deleteToDo);
+	$('#display-items').on('click', '.complete-box', toggleComplete);
 	}
 
 function createToDo() {
@@ -16,7 +17,7 @@ function createToDo() {
 	let newToDo = {
 		name: $('#task-name').val(),
 		section: $('#task-subject').val(),
-		priority: $('#task-priority').val(),
+		// priority: $('#task-priority').val(),
 		notes: $('#task-notes').val()
 	};
 
@@ -49,8 +50,8 @@ function deleteToDo() {
 	});
 }
 
-function editToDo() {
-	console.log('click in editToDo')
+function toggleComplete() {
+	console.log('click in toggleComplete')
 	let todoId = $( this ).closest( 'tr' ).data( 'todo-id' );
 	console.log('status changed, todo id is:', todoId);
   
@@ -62,7 +63,7 @@ function editToDo() {
 	  markTask.complete = false;
 	};
 	$.ajax({
-	  method: 'PUT',
+	  type: 'PUT',
 	  url: `/todolist/${todoId}`,
 	  data: markTask
 	}).then( function( result ){
@@ -96,7 +97,7 @@ function displayToDos(todoItems) {
 			// $tr.data('todo', todo);
 			$tr.append(`<td>${todo.name}</td>`);
 			$tr.append(`<td>${todo.section}</td>`);
-			$tr.append(`<td>${todo.priority}</td>`);
+			// $tr.append(`<td>${todo.priority}</td>`);
 			$tr.append(`<td>${todo.notes}</td>`);
 			if ( todo.complete === true ){
 				$('<input>', {
@@ -109,6 +110,6 @@ function displayToDos(todoItems) {
 			}
 			$tr.append(`<td><button class="delete-button">DELETE</button></td>`);
 			$tr.append(`</tr>`)
-			$('#viewToDos').append($tr);
+		$('#display-items').append($tr);
 	}
 }// end displayToDos

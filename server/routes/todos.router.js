@@ -35,16 +35,16 @@ router.post('/', (req, res) => {
 	let newTD = req.body;
 	console.log('Adding new item:', newTD);
 
-	let queryText = `INSERT INTO "to-do" ("name", "section", "priority", "notes")
-					VALUES ($2, $3, $4, $9)`;
-	pool.query(queryText, [newTD.name, newTD.section, newTD.priority, newTD.notes])
-	.then((result) => {
-		console.log('Added item', result);
-		res.sendStatus(201);
-	}).catch((error) => {
-		console.log(`Error adding new item`, error);
-		res.sendStatus(500);
-	});
+	let queryText = `INSERT INTO "to-do" ("name", "section", "notes")
+					VALUES ($1, $2, $3, $4)`;
+	pool.query(queryText, [newTD.name, newTD.section, newTD.notes])
+        .then((result) => {
+            console.log('Added item', result);
+            res.sendStatus(201);
+        }).catch((error) => {
+            console.log(`Error adding new item`, error);
+            res.sendStatus(500);
+        });
 });// end post
 
 router.delete('/:id', (req, res) => {

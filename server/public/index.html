@@ -2,8 +2,8 @@
 <html>
     <head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="./styles/style.css" type="text/css" />
 		<link rel="stylesheet" href="./vendors/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="./styles/style.css" type="text/css" />
 		<script src="./vendors/jquery.js" charset="utf-8"></script>
 		<script src="./scripts/client.js" charset="utf-8"></script>
 		<title>To-Do List</title>
@@ -15,13 +15,18 @@
 		<main>
 			<section id="todo-form">
 				<h3></h3>
-				<label for=""></label><input type="text" id="task-name" size="50">
+				<label for=""></label><input placeholder="Task name" type="text" id="task-name" size="50" required autofocus>
 				<br />
-				<label for=""></label><input type="text" id="task-subject" size="50">
+				<label for=""></label><input placeholder="Subject" type="text" id="task-subject" size="50">
 				<br />
-				<label for=""></label><input type="text" id="task-priority" size="50">
+				<!-- <select id="task-priority">
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+					<option value="D">D</option>
+					</select> -->
 				<br />
-				<label for=""></label><input type="text" id="task-notes" size="50">
+				<label for=""></label><input placeholder="Notes" type="text" id="task-notes" size="50" height="2">
 				<br />
 				<button id="submit-button">Create</button>
 			</section>
@@ -33,8 +38,10 @@
 							<tr>
 								<th>Name</th>
 								<th>Subject</th>
-								<th>Priority</th>
+								<!-- <th>Priority</th> -->
 								<th>Notes</th>
+								<th>Complete</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody id="display-items">
